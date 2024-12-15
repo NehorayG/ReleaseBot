@@ -77,7 +77,7 @@ The description should be written as follows:
 Provide a detailed description of the change or feature (this can span multiple lines if needed).
 
 Followed by the affected components, written on the next line, and in the format:
-Affected Components: Component1, Component2, Component3
+<br>Affected Components: Component1, Component2, Component3
 
 - The affected components should be listed on the same line under the 
 **Affected Components** header.
@@ -102,14 +102,14 @@ IMPROVEMENT Azure AppRegistration new property - 11:30 UTC
 **Release Notes Description:**
 Added support for a new property in Azure AppRegistration - “assignmentRoles” in Compliance Engine.
 
-Affected Components: Fetchers, Compliance Engine
+<br>Affected Components: Fetchers, Compliance Engine
 
 ### Full Example:
 Release Notes Title: FEATURE Azure AppRegistration new property - 11:30 UTC
 
 Release Notes Description: Added support for a new property in Azure AppRegistration - "assignmentRoles" in Compliance Engine. This property enhances the management of assignment roles within the Compliance Engine.
 
-Affected Components: Fetchers, Compliance Engine, UI
+<br>Affected Components: Fetchers, Compliance Engine, UI
 
 Known Limitations:
 
