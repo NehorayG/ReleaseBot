@@ -62,8 +62,6 @@ Once the settings are configured, you can start using the application:
 The title of the release notes should follow this format:
 TYPE TITLE
 
-markdown
-Copy code
 Where:
 - **TYPE** is one of the following:
   - `IMPROVEMENT`
@@ -74,29 +72,19 @@ Where:
 **Example:**
 IMPROVEMENT Azure AppRegistration new property - 11:30 UTC
 
-php
-Copy code
-
 ### **Jira Release Notes Description Format**
 The description should be written as follows:
 Description bla bla bla (can be more than one line)
 
-vbnet
-Copy code
 Followed by the affected components, written on the next line, and in the format:
 Affected Components: Component1, Component2, Component3
 
-markdown
-Copy code
 - The affected components should be listed on the same line under the **Affected Components** header.
 
 **Example:**
 Added support for a new property in Azure AppRegistration - “assignmentRoles” in Compliance Engine.
 
 Affected Components: Fetchers, Compliance Engine
-
-markdown
-Copy code
 
 ### **Case ID**
 The **Case ID** will be automatically assigned and is not required to be entered manually.
@@ -109,16 +97,10 @@ Users will need to manually enter any known limitations in the UI before publish
 **Release Notes Title:**
 IMPROVEMENT Azure AppRegistration new property - 11:30 UTC
 
-markdown
-Copy code
-
 **Release Notes Description:**
 Added support for a new property in Azure AppRegistration - “assignmentRoles” in Compliance Engine.
 
 Affected Components: Fetchers, Compliance Engine
-
-shell
-Copy code
 
 ### Full Example:
 Release Notes Title: FEATURE Azure AppRegistration new property - 11:30 UTC
@@ -131,8 +113,6 @@ Known Limitations:
 
 Some legacy configurations may not be fully compatible with the new property.
 Users need to ensure that their fetcher configurations are updated for compatibility.
-css
-Copy code
 
 ## Contributing
 If you'd like to contribute to the development of this application, feel free to fork the repository and submit a pull request.
