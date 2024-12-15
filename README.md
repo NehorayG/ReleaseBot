@@ -56,6 +56,83 @@ Once the settings are configured, you can start using the application:
   - **Publish Button**: Allows you to publish the release notes once all required fields are filled.
   - **Settings Icon**: Located in the top-left corner. Click it to configure your Jira credentials (**email & API key**).
 
+## Release Notes Format Instructions
+
+### **Jira Release Notes Title Format**
+The title of the release notes should follow this format:
+TYPE TITLE
+
+markdown
+Copy code
+Where:
+- **TYPE** is one of the following:
+  - `IMPROVEMENT`
+  - `FIX/FIXED`
+  - `FEATURE`
+- **TITLE** is a concise description of the change or feature.
+
+**Example:**
+IMPROVEMENT Azure AppRegistration new property - 11:30 UTC
+
+php
+Copy code
+
+### **Jira Release Notes Description Format**
+The description should be written as follows:
+Description bla bla bla (can be more than one line)
+
+vbnet
+Copy code
+Followed by the affected components, written on the next line, and in the format:
+Affected Components: Component1, Component2, Component3
+
+markdown
+Copy code
+- The affected components should be listed on the same line under the **Affected Components** header.
+
+**Example:**
+Added support for a new property in Azure AppRegistration - “assignmentRoles” in Compliance Engine.
+
+Affected Components: Fetchers, Compliance Engine
+
+markdown
+Copy code
+
+### **Case ID**
+The **Case ID** will be automatically assigned and is not required to be entered manually.
+
+### **Known Limitations**
+Users will need to manually enter any known limitations in the UI before publishing the release notes.
+
+### **Example of a Completed Jira Ticket:**
+
+**Release Notes Title:**
+IMPROVEMENT Azure AppRegistration new property - 11:30 UTC
+
+markdown
+Copy code
+
+**Release Notes Description:**
+Added support for a new property in Azure AppRegistration - “assignmentRoles” in Compliance Engine.
+
+Affected Components: Fetchers, Compliance Engine
+
+shell
+Copy code
+
+### Full Example:
+Release Notes Title: FEATURE Azure AppRegistration new property - 11:30 UTC
+
+Release Notes Description: Added support for a new property in Azure AppRegistration - "assignmentRoles" in Compliance Engine. This property enhances the management of assignment roles within the Compliance Engine.
+
+Affected Components: Fetchers, Compliance Engine, UI
+
+Known Limitations:
+
+Some legacy configurations may not be fully compatible with the new property.
+Users need to ensure that their fetcher configurations are updated for compatibility.
+css
+Copy code
 
 ## Contributing
 If you'd like to contribute to the development of this application, feel free to fork the repository and submit a pull request.
