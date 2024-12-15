@@ -74,17 +74,19 @@ IMPROVEMENT Azure AppRegistration new property - 11:30 UTC
 
 ### **Jira Release Notes Description Format**
 The description should be written as follows:
-Description bla bla bla (can be more than one line)
+Provide a detailed description of the change or feature (this can span multiple lines if needed).
 
 Followed by the affected components, written on the next line, and in the format:
 Affected Components: Component1, Component2, Component3
 
-- The affected components should be listed on the same line under the **Affected Components** header.
+- The affected components should be listed on the same line under the 
+**Affected Components** header.
 
 **Example:**
 Added support for a new property in Azure AppRegistration - “assignmentRoles” in Compliance Engine.
 
-Affected Components: Fetchers, Compliance Engine
+Affected Components: 
+Fetchers, Compliance Engine
 
 ### **Case ID**
 The **Case ID** will be automatically assigned and is not required to be entered manually.
@@ -113,6 +115,8 @@ Known Limitations:
 
 Some legacy configurations may not be fully compatible with the new property.
 Users need to ensure that their fetcher configurations are updated for compatibility.
+
+Note that Known Limitations are not taken from the Jira Ticket. If you want to change them, update it from the UI and click 'Save Changes'.
 
 ## Contributing
 If you'd like to contribute to the development of this application, feel free to fork the repository and submit a pull request.
