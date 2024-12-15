@@ -36,11 +36,11 @@ Once the settings are configured, you can start using the application:
 
 ### Editing and Saving Changes:
 1. The ticket information will appear in the large text area below.
-2. You can make changes to the ticket details directly.
+2. You can make changes to the Release Notes details directly.
 3. Click **Save Changes** to save the updated information.
 
 ### Preview Mode:
-- If you want to view the ticket in a preview format (read-only mode), click **Preview**.
+- If you want to view the Release Notes in a preview format (read-only mode), click **Preview**.
 - Click **Return Edit Mode** to go back to editing the ticket.
 
 ### Publishing Release Notes:
@@ -77,7 +77,7 @@ The description should be written as follows:
 Provide a detailed description of the change or feature (this can span multiple lines if needed).
 
 Followed by the affected components, written on the next line, and in the format:
-Affected Components:<br> Component1, Component2, Component3
+<br>Affected Components:<br> Component1, Component2, Component3
 
 - The affected components should be listed on the same line under the 
 **Affected Components** header.
@@ -85,7 +85,7 @@ Affected Components:<br> Component1, Component2, Component3
 **Example:**
 Added support for a new property in Azure AppRegistration - “assignmentRoles” in Compliance Engine.
 
-Affected Components: 
+Affected Components: <br>
 Fetchers, Compliance Engine
 
 ### **Case ID**
@@ -111,12 +111,8 @@ Release Notes Description: Added support for a new property in Azure AppRegistra
 
 Affected Components:<br> Fetchers, Compliance Engine, UI
 
-Known Limitations:
-
 Some legacy configurations may not be fully compatible with the new property.
 Users need to ensure that their fetcher configurations are updated for compatibility.
-
-Note that Known Limitations are not taken from the Jira Ticket. If you want to change them, update it from the UI and click 'Save Changes'.
 
 ## Contributing
 If you'd like to contribute to the development of this application, feel free to fork the repository and submit a pull request.
