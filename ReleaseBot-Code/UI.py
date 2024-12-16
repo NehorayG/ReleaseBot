@@ -125,6 +125,10 @@ class UI:
                                                     initialvalue=""  # Set an initial value if needed
                                                     )  # Optionally limit the number of characters
 
+            if deploy_case_id is None:
+                self.reset_deploy_checkbox()
+                return
+
             if not deploy_case_id:
                 messagebox.showerror("Input Error", "Please enter a valid Ticket ID.")
                 self.reset_deploy_checkbox()
@@ -453,12 +457,13 @@ class UI:
         if self.deploy_mode_var.get():
             self.ticket_id_entry.delete(0, tk.END)  # Clear any existing text
 
-            if UI.place + 1 > len(UI.deploy_mode_tickets):
+            if UI.place + 1> len(UI.deploy_mode_tickets):
                 # Show a message box with a message
                 messagebox.showinfo("Deploy Finished", "Deploy has Finished! Nice!")
                 self.reset_deploy_checkbox()
-
-            self.ticket_id_entry.insert(0,UI.deploy_mode_tickets[UI.place])  # Set the new ticket as value
+                return
+            else:
+                self.ticket_id_entry.insert(0,UI.deploy_mode_tickets[UI.place])  # Set the new ticket as value
             UI.place += 1
         ticket_id = self.ticket_id_entry.get().strip()
         ticket_id = self.process_url(ticket_id)
