@@ -15,11 +15,14 @@ class JiraFetch:
         try:
             issue = self.jira.issue(issue_key)
 
+            known_limitations = issue.fields.customfield_11202
             release_notes_title = issue.fields.customfield_12235
             release_notes_description = issue.fields.customfield_11111
-
             issue_links = issue.fields.issuelinks
             case_ids = []
+
+            if known_limitations is None:
+                known_limitations = "N/A"
 
             for link in issue_links:
                 if hasattr(link, 'type') and link.type.name == "Blocks":
@@ -35,7 +38,7 @@ class JiraFetch:
 
             filtered_case_ids = [case.upper() for case in filtered_case_ids]
 
-            return release_notes_title, release_notes_description, filtered_case_ids
+            return release_notes_title, release_notes_description, filtered_case_ids, known_limitations
         except JIRAError as e:
             return None, None, None, [
                 f"Error: Unable to fetch details for the given Ticket ID. {str(e)}"]

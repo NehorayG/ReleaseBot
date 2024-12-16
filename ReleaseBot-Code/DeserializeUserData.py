@@ -55,22 +55,18 @@ class DeserializeUserData:
         for line in text.splitlines():
             stripped_line = line.strip()
 
-            if not processed:  # Check if it has already been processed
-                if (stripped_line.upper().startswith("IMPROVEMENT") or
-                        stripped_line.upper().startswith("FEATURE") or
-                        stripped_line.upper().startswith("FIX") or
-                        stripped_line.upper().startswith("FIXED")):
+            if (stripped_line.upper().startswith("IMPROVEMENT") or
+                    stripped_line.upper().startswith("FEATURE") or
+                    stripped_line.upper().startswith("FIX") or
+                    stripped_line.upper().startswith("FIXED")):
 
-                    cls.release_notes_title = stripped_line
-                    cls.publish_type = cls.__extract_publish_type(stripped_line)
+                cls.release_notes_title = stripped_line
+                cls.publish_type = cls.__extract_publish_type(stripped_line)
 
-                    # Check if the line starts with "FIX" or "FIXED" (in uppercase) and set the publish_type as "Fixed"
-                    if "FIX" in stripped_line.upper():
-                        cls.publish_type = "FIXED"
+                # Check if the line starts with "FIX" or "FIXED" (in uppercase) and set the publish_type as "Fixed"
+                if "FIX" in stripped_line.upper():
+                    cls.publish_type = "FIXED"
 
-                    processed = True  # Set the flag to True to prevent re-entering this block for the same line
-
-                continue
 
             elif stripped_line.startswith("Release Notes Description:"):
                 current_section = "description"

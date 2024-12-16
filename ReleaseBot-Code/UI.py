@@ -183,6 +183,10 @@ class UI:
 
     def publish_release_notes(self):
         """Handle publishing release notes."""
+        if self.result_text.cget("state") == "disabled":  # Check if in Preview Mode
+            messagebox.showerror("Error",
+                            "Cannot Publish while in Preview Mode. Return to Edit Mode to save changes.")
+            return
         self.LogPage = True
         # Check for empty fields
         empty_fields = self._validate_fields()
@@ -226,7 +230,7 @@ class UI:
             empty_fields.append("Release Notes Description")
         if not DeserializeUserData.DeserializeUserData.related_ticket_ids:
             empty_fields.append("Related Ticket IDs")
-        if not DeserializeUserData.DeserializeUserData.known_limitations or DeserializeUserData.DeserializeUserData.known_limitations == "None":
+        if not DeserializeUserData.DeserializeUserData.known_limitations or DeserializeUserData.DeserializeUserData.known_limitations == 'None':
             empty_fields.append("Known Limitations")
         if not DeserializeUserData.DeserializeUserData.affected_components:
             empty_fields.append("Affected Components")
@@ -419,7 +423,7 @@ class UI:
             else:
                 self.save_button.config(bg="#4CAF50")
 
-    def publish_release_notes_to_app(self, release_notes_title, release_notes_description, related_ticket_ids):
+    def publish_release_notes_to_app(self, release_notes_title, release_notes_description, related_ticket_ids, known_limitations):
         # Clear the ScrolledText widget
         self.result_text.delete(1.0, tk.END)
 
@@ -434,7 +438,7 @@ class UI:
         self.result_text.insert(tk.END, f"{', '.join(related_ticket_ids)}\n\n", "data")  # Normal Data
 
         self.result_text.insert(tk.END, "Known Limitations:\n", "title")  # Bold Title
-        self.result_text.insert(tk.END, f"{self.known_limitations}\n", "data")  # Normal Data
+        self.result_text.insert(tk.END, f"{known_limitations}\n", "data")  # Normal Data
 
     def process_url(self, url):
         prefix = "https://dome9-security.atlassian.net/browse/"
@@ -482,7 +486,7 @@ class UI:
             jira_fetch_instance = jira_fetch.JiraFetch(jira_url, username, api_token)
 
             # Fetch Jira issue details
-            release_notes_title, release_notes_description, related_ticket_ids = jira_fetch_instance.fetch_issue_details(
+            release_notes_title, release_notes_description, related_ticket_ids,known_limitations = jira_fetch_instance.fetch_issue_details(
                 ticket_id)
 
             # Check for error in fetched data
@@ -492,7 +496,7 @@ class UI:
 
             # Display the result in the text box
             self.result_text.delete(1.0, tk.END)  # Clear previous content
-            self.publish_release_notes_to_app(release_notes_title, release_notes_description, related_ticket_ids)
+            self.publish_release_notes_to_app(release_notes_title, release_notes_description, related_ticket_ids,known_limitations)
 
             # After fetching the data, save it and set the button color to green
             self.last_saved_data = self.result_text.get(1.0, tk.END).strip()
