@@ -55,18 +55,9 @@ class DeserializeUserData:
         for line in text.splitlines():
             stripped_line = line.strip()
 
-            if (stripped_line.upper().startswith("IMPROVEMENT") or
-                    stripped_line.upper().startswith("FEATURE") or
-                    stripped_line.upper().startswith("FIX") or
-                    stripped_line.upper().startswith("FIXED")):
-
-                cls.release_notes_title = stripped_line
-                cls.publish_type = cls.__extract_publish_type(stripped_line)
-
-                # Check if the line starts with "FIX" or "FIXED" (in uppercase) and set the publish_type as "Fixed"
-                if "FIX" in stripped_line.upper():
-                    cls.publish_type = "FIXED"
-
+            if stripped_line.startswith("Release Notes Title:"):
+                current_section = "title"
+                continue
 
             elif stripped_line.startswith("Release Notes Description:"):
                 current_section = "description"
@@ -85,7 +76,10 @@ class DeserializeUserData:
                 continue
 
             # Append content to the appropriate section
-            if current_section == "description":
+            if current_section == "title":
+                cls.release_notes_title += stripped_line
+
+            elif current_section == "description":
                 cls.release_notes_description.append(line)
 
             elif current_section == "affected_components":
@@ -95,7 +89,14 @@ class DeserializeUserData:
                 cls.related_ticket_ids.extend(cls.__get_tickets(stripped_line))
 
             elif current_section == "known_limitations":
-                cls.known_limitations = stripped_line
+                cls.known_limitations += stripped_line
+
+        cls.publish_type = cls.__extract_publish_type(cls.release_notes_title)
+
+        # Check if the line starts with "FIX" or "FIXED" (in uppercase) and set the publish_type as "Fixed"
+        if "FIX" in cls.release_notes_title.upper():
+            cls.publish_type = "FIXED"
+
 
         # Remove publish type from the title for a cleaner output
         title_without_type = " ".join(cls.release_notes_title.split()[1:]).strip()
